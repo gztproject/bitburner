@@ -128,9 +128,9 @@ export async function main(ns) {
           didChange = true
         }
       }
-    } else {
-      let smallestCurrentServer = Math.max(ns.GetServerMaxRam(purchasedServers[0]), settings.minGbRam)
-      let biggestCurrentServer = ns.GetServerMaxRam(purchasedServers[purchasedServers.length - 1])
+    } else {      
+      let smallestCurrentServer = Math.max(ns.getServerMaxRam(purchasedServers[0]), settings.minGbRam)
+      let biggestCurrentServer = ns.getServerMaxRam(purchasedServers[purchasedServers.length - 1])
       let targetRam = biggestCurrentServer
 
       if (smallestCurrentServer === settings.maxGbRam) {
@@ -150,13 +150,13 @@ export async function main(ns) {
       targetRam = Math.min(targetRam, settings.maxGbRam)
 
       purchasedServers = getPurchasedServers(ns)
-      if (targetRam > ns.GetServerMaxRam(purchasedServers[0])) {
+      if (targetRam > ns.getServerMaxRam(purchasedServers[0])) {
         didChange = true
         while (didChange) {
           didChange = false
           purchasedServers = getPurchasedServers(ns)
 
-          if (targetRam > ns.GetServerMaxRam(purchasedServers[0])) {
+          if (targetRam > ns.getServerMaxRam(purchasedServers[0])) {
             if (ns.getServerMoneyAvailable('home') * settings.totalMoneyAllocation >= targetRam * settings.gbRamCost) {
               let hostname = `pserv-${targetRam}-${createUUID()}`
 

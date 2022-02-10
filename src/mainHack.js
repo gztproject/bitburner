@@ -330,5 +330,9 @@ export async function main(ns) {
     }
 
     await ns.sleep(weakenTime + 300)
+    
+    ns.tprint(`[${localeHHMMSS()}] Spawning contracter.js`)
+    await ns.exec('contracter.js')
+    await ns.sleep(3000)
   }
 }
